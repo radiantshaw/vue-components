@@ -1,0 +1,8 @@
+{
+  "name": "vue-components",
+  "version": "1.0.0",
+  "description": "Vue components presentation",
+  "main": "index.js",
+  "author": "Nipun Paradkar <nipun@kiprosh.com>",
+  "license": "MIT"
+}
