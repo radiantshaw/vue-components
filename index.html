@@ -168,6 +168,240 @@
           <iframe class="fragment" data-src="examples/blog-post.html"></iframe>
         </section>
       </section>
+
+      <section>
+        <section>
+          <h2>Prop Features</h2>
+        </section>
+
+        <section>
+          <h3>Prop Casing</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;h3&gt;{{ postTitle }}&lt;/h3&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-post',
+                props: ['postTitle']
+              }
+            &lt;/script&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post post-title=&quot;Another blog&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Prop Types</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;script&gt;
+              export default {
+                props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
+              }
+            &lt;/script&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;script&gt;
+              export default {
+                props: {
+                  title: String,
+                  likes: Number,
+                  isPublished: Boolean,
+                  commentIds: Array,
+                  author: Object,
+                  callback: Function,
+                  custom: Custom
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Prop Validation</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;script&gt;
+              export default {
+                props: {
+                  propA: Number,
+                  propB: [String, Number],
+                  propC: {
+                    type: String,
+                    required: true
+                  },
+                  propD: {
+                    type: Number,
+                    default: 42
+                  },
+                  propE: {
+                    type: Object,
+                    default: function() {
+                      returns { message: 'hello' };
+                    }
+                  },
+                  propF: {
+                    type: Array,
+                    default: function() {
+                      returns [3.41, 1729];
+                    }
+                  },
+                  propG: {
+                    validator: function(value) {
+                      return ['success', 'warning', 'danger'].indexOf(value) !== -1;
+                    }
+                  }
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Static vs Dynamic Props</h2>
+        </section>
+
+        <section>
+          <h3>Static Props</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post title=&quot;My journey with Vue&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Dynamic Props</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :title=&quot;post.title&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-container',
+                data() {
+                  return {
+                    post: {
+                      title: 'Simplicity of Vue'
+                    }
+                  }
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Passing a Number</h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :likes=&quot;42&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :likes=&quot;post.likes&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Passing a Boolean</h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post is-published&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :is-published=&quot;false&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :is-published=&quot;post.isPublished&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Passing an Array</h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :comment-ids=&quot;[234, 266, 273]&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :comment-ids=&quot;post.commentIds&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Passing an Object</h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :author=&quot;{ name: 'Veronica', company: 'Veridian Dynamics' }&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :author=&quot;post.author&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Passing Properties of an Object</h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post v-bind=&quot;post&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-container',
+                data() {
+                  return {
+                    post: {
+                      id: 1,
+                      title: 'My Journey with Vue'
+                    }
+                  }
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;blog-post :id=&quot;post.id&quot; :title=&quot;post.title&quot;&gt;&lt;/blog-post&gt;
+            &lt;/template&gt;
+          </code></pre>
+        </section>
+      </section>
     </div>
   </div>
   <script src="node_modules/reveal.js/dist/reveal.js"></script>
