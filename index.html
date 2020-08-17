@@ -21,17 +21,23 @@
     <div class="slides">
       <section>
         <section>
-          <h1>What is a component?</h1>
+          <h2>What is a component?</h2>
         </section>
 
         <section class="progressive-definition">
-          <h2>com &middot; po &middot; nent</h2>
+          <h3>com &middot; po &middot; nent</h3>
           <p>/kəmˈpəʊnənt/</p>
           <p>reusable Vue instances with a name</p>
         </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Basics</h2>
+        </section>
 
         <section>
-          <h2>Example</h2>
+          <h3>Example</h3>
 
           <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
             &lt;!-- counter-button --&gt;
@@ -52,7 +58,7 @@
         </section>
 
         <section>
-          <h2>Usage</h2>
+          <h3>Usage</h3>
 
           <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
             &lt;counter-button&gt;&lt;/counter-button&gt;
@@ -60,6 +66,29 @@
           </code></pre>
 
           <iframe class="fragment" data-src="examples/counter-button.html"></iframe>
+        </section>
+
+        <section>
+          <h3>Registration</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers>
+            Vue.component('button-counter', {
+              data: function() {
+                return {
+                  count: 0
+                };
+              },
+              template: `
+                <button @click="count++">
+                  You clicked me {{ count }} times.
+                </button>
+              `;
+            });
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
+            &lt;counter-button&gt;&lt;/counter-button&gt;
+          </code></pre>
         </section>
       </section>
     </div>
