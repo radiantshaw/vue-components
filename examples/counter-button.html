@@ -5,16 +5,6 @@
   <title>Counter Button</title>
 
   <link rel="stylesheet" href="../css/iframe.css">
-
-  <style>
-    .row {
-      height: 100%;
-    }
-
-    .column {
-      text-align: center;
-    }
-  </style>
 </head>
 <body>
   <div id="app">
@@ -31,9 +21,9 @@
         }
       },
       template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-    })
+    });
 
-    new Vue({ el: '#app' })
+    new Vue({ el: '#app' });
   </script>
 </body>
 </html>
