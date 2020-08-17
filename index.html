@@ -91,6 +91,41 @@
           </code></pre>
         </section>
       </section>
+
+      <section>
+        <section>
+          <h2>Single File Components</h2>
+        </section>
+
+        <section>
+          <h3>Structure</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;button @click=&quot;count++&quot;&gt;
+                You clicked me {{ count }} times.
+              &lt;/button&gt;
+            &lt;/template&gt;
+
+            &lt;style&gt;
+              button {
+                /* ... */
+              }
+            &lt;/style&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'counter-button',
+                data() {
+                  return {
+                    count: 0
+                  };
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+      </section>
     </div>
   </div>
   <script src="node_modules/reveal.js/dist/reveal.js"></script>
@@ -99,7 +134,16 @@
     Reveal.initialize({
       hash: true,
       preloadIframes: true,
-      plugins: [RevealHighlight]
+      plugins: [RevealHighlight],
+      dependencies: [
+        {
+          src: 'node_modules/highlightjs-vue/dist/highlightjs-vue.cjs.js',
+          callback: function() {
+            var hljs = Reveal.getPlugin('highlight').hljs;
+            hljs.registerLanguage('vue', window.hljsDefineVue);
+          }
+        }
+      ]
     });
   </script>
 </body>
