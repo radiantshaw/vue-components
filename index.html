@@ -402,6 +402,152 @@
           </code></pre>
         </section>
       </section>
+
+      <section>
+        <section>
+          <h2>Events</h2>
+        </section>
+
+        <section>
+          <h3>Example</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;div :style=&quot;{ fontSize: fontSize + 'em' }&quot;&gt;
+                &lt;blog-post :title=&quot;title&quot;&gt;&lt;/blog-post&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-container',
+                data() {
+                  return {
+                    title: 'Casablanca is a timeless classic.',
+                    fontSize: 1
+                  }
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <pre><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;div&gt;
+                &lt;h3&gt;{{ title }}&lt;/h3&gt;
+
+                &lt;button&gt;
+                  Enlarge text
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-post'
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Solution</h3>
+
+          <pre><code class="lang-vue" data-trim data-line-numbers="5-7">
+            &lt;template&gt;
+              &lt;div&gt;
+                &lt;h3&gt;{{ title }}&lt;/h3&gt;
+
+                &lt;button @click=&quot;$emit('enlarge-text')&quot;&gt;
+                  Enlarge text
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-post'
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <pre><code class="lang-vue" data-trim data-line-numbers="3">
+            &lt;template&gt;
+              &lt;div :style=&quot;{ fontSize: fontSize + 'em' }&quot;&gt;
+                &lt;blog-post @enlarge-text=&quot;fontSize += 0.1&quot; :title=&quot;title&quot;&gt;&lt;/blog-post&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-container',
+                data() {
+                  return {
+                    title: 'Casablanca is a timeless classic.',
+                    fontSize: 1
+                  }
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <iframe data-src="examples/events.html"></iframe>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Events with Custom Values</h2>
+        </section>
+
+        <section>
+          <pre><code class="lang-vue" data-trim data-line-numbers="5-7">
+            &lt;template&gt;
+              &lt;div&gt;
+                &lt;h3&gt;{{ title }}&lt;/h3&gt;
+
+                &lt;button @click=&quot;$emit('enlarge-text', 0.1)&quot;&gt;
+                  Enlarge text
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-post'
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <pre><code class="lang-vue" data-trim data-line-numbers="3">
+            &lt;template&gt;
+              &lt;div :style=&quot;{ fontSize: fontSize + 'em' }&quot;&gt;
+                &lt;blog-post @enlarge-text=&quot;fontSize += $event&quot; :title=&quot;title&quot;&gt;&lt;/blog-post&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-container',
+                data() {
+                  return {
+                    title: 'Casablanca is a timeless classic.',
+                    fontSize: 1
+                  }
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+      </section>
     </div>
   </div>
   <script src="node_modules/reveal.js/dist/reveal.js"></script>
