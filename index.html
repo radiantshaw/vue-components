@@ -548,6 +548,61 @@
           </code></pre>
         </section>
       </section>
+
+      <section>
+        <section>
+          <h2>Slots</h2>
+        </section>
+
+        <section>
+          <h3>Example</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
+            &lt;navigation-link url=&quot;/profile&quot;&gt;
+              Your Profile
+            &lt;/navigation-link&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;template&gt;
+              &lt;a :href=&quot;url&quot;&gt;
+                &lt;slot&gt;&lt;/slot&gt;
+              &lt;/a&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'navigation-link',
+                props: ['url']
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Slot Features</h2>
+        </section>
+
+        <section>
+          <h3>Any template code is allowed</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
+            &lt;navigation-link url=&quot;/profile&quot;&gt;
+              &lt;span class=&quot;fa fa-user&quot;&gt;&lt;/span&gt;
+              Your Profile
+            &lt;/navigation-link&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
+            &lt;navigation-link url=&quot;/profile&quot;&gt;
+              &lt;font-awesome-icon name=&quot;user&quot;&gt;&lt;/font-awesome-icon&gt;
+              Your Profile
+            &lt;/navigation-link&gt;
+          </code></pre>
+        </section>
+      </section>
     </div>
   </div>
   <script src="node_modules/reveal.js/dist/reveal.js"></script>
