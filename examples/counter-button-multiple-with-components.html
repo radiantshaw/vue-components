@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Counter Button</title>
+  <title>Counter Button Multiple With Components</title>
 
   <link rel="stylesheet" href="../css/iframe.css">
 </head>
@@ -10,19 +10,12 @@
   <div id="app">
     <counter-button></counter-button>
     <counter-button></counter-button>
+    <counter-button></counter-button>
   </div>
 
   <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <script src="../js/components/counter-button.js"></script>
   <script>
-    Vue.component('counter-button', {
-      data: function () {
-        return {
-          count: 0
-        }
-      },
-      template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-    });
-
     new Vue({ el: '#app' });
   </script>
 </body>

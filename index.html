@@ -37,58 +37,92 @@
         </section>
 
         <section>
-          <h3>Example</h3>
+          <h3>Let's build something!</h3>
 
-          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
-            &lt;!-- counter-button --&gt;
-            &lt;button @click=&quot;count++&quot;&gt;
-              You clicked me {{ count }} times.
-            &lt;/button&gt;
+          <iframe class="fragment" data-src="examples/counter-button-showcase.html"></iframe>
+        </section>
+
+        <section>
+          <h3>The normal way...</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,5|2,4|3|1-5">
+            &lt;div id=&quot;app&quot;&gt;
+              &lt;button @click=&quot;count++&quot;&gt;
+                You clicked me {{ count }} times.
+              &lt;/button&gt;
+            &lt;/div&gt;
           </code></pre>
 
-          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers>
-            {
-              data: function() {
-                return {
-                  count: 0
-                };
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="1,6|2|3,5|4|1-6">
+            new Vue({
+              el: '#app',
+              data: {
+                count: 0
               }
-            }
-          </code></pre>
-        </section>
-
-        <section>
-          <h3>Usage</h3>
-
-          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
-            &lt;counter-button&gt;&lt;/counter-button&gt;
-            &lt;counter-button&gt;&lt;/counter-button&gt;
-          </code></pre>
-
-          <iframe class="fragment" data-src="examples/counter-button.html"></iframe>
-        </section>
-
-        <section>
-          <h3>Registration</h3>
-
-          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers>
-            Vue.component('button-counter', {
-              data: function() {
-                return {
-                  count: 0
-                };
-              },
-              template: `
-                <button @click="count++">
-                  You clicked me {{ count }} times.
-                </button>
-              `;
             });
           </code></pre>
 
-          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
-            &lt;counter-button&gt;&lt;/counter-button&gt;
+          <iframe class="fragment" data-src="examples/counter-button-without-components.html"></iframe>
+        </section>
+
+        <section>
+          <h3>The component way...</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="1,12|7,11|8-10|2,6|3,5|4|1-12">
+            Vue.component('counter-button', {
+              data: function() {
+                return {
+                  count: 0
+                }
+              },
+              template: `
+                &lt;button @click="count++"&gt;
+                  You clicked me {{ count }} times.
+                &lt;/button&gt;
+              `
+            });
           </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,5|2,4|3|1-5">
+            &lt;div id=&quot;app&quot;&gt;
+              &lt;counter-button&gt;&lt;/counter-button&gt;
+            &lt;/div&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers>
+            new Vue({ el: '#app' });
+          </code></pre>
+        </section>
+
+        <section>
+          <iframe data-src="examples/counter-button-with-components.html"></iframe>
+
+          <h3 class="fragment">What's all the fuss about?</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="2|3|4|1-5">
+            &lt;div id=&quot;app&quot;&gt;
+              &lt;counter-button&gt;&lt;/counter-button&gt;
+              &lt;counter-button&gt;&lt;/counter-button&gt;
+              &lt;counter-button&gt;&lt;/counter-button&gt;
+            &lt;/div&gt;
+          </code></pre>
+
+          <iframe class="fragment" data-src="examples/counter-button-multiple-with-components.html"></iframe>
+        </section>
+
+        <section>
+          <h3><code>data</code> needs to be a function</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="2-4">
+            Vue.component('counter-button', {
+              data: {
+                count: 0
+              },
+              /* ... */
+            });
+          </code></pre>
+
+          <iframe class="fragment" data-src="examples/counter-button-data-not-function.html"></iframe>
         </section>
       </section>
 
