@@ -130,20 +130,38 @@
         </section>
 
         <section>
-          <h3>Structure</h3>
+          <h3>Anatomy of a Single File Component</h3>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-shell" data-trim>
+            $ touch component.vue
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1,3|2|5,7|6|9,13|10,12|11|1-13">
+            &lt;template&gt;
+              &lt;!-- ... --&gt;
+            &lt;/template&gt;
+
+            &lt;style&gt;
+              /* ... */
+            &lt;/style&gt;
+
+            &lt;script&gt;
+              export default {
+                // ...
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>The Single File Component way...</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1,5|2-4|7,16|8,15|9|10-14|1-16">
             &lt;template&gt;
               &lt;button @click=&quot;count++&quot;&gt;
                 You clicked me {{ count }} times.
               &lt;/button&gt;
             &lt;/template&gt;
-
-            &lt;style&gt;
-              button {
-                /* ... */
-              }
-            &lt;/style&gt;
 
             &lt;script&gt;
               export default {
