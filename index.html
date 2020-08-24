@@ -179,6 +179,70 @@
 
       <section>
         <section>
+          <h2>Perks of Single File Components</h2>
+        </section>
+
+        <section>
+          <h3><code>template</code> preprocessing</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;template lang=&quot;jade&quot;&gt;&lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;template lang=&quot;haml&quot;&gt;&lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;template lang=&quot;pug&quot;&gt;&lt;/template&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3><code>style</code> preprocessing</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;style lang=&quot;scss&quot;&gt;&lt;/style&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;style lang=&quot;less&quot;&gt;&lt;/style&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;style lang=&quot;stylus&quot;&gt;&lt;/style&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3><code>script</code> preprocessing</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;script lang=&quot;coffee&quot;&gt;&lt;/script&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;script lang=&quot;ts&quot;&gt;&lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Scoped <code>style</code></h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="5,7|6|1,3|2|1-7">
+            &lt;template&gt;
+              &lt;!-- ... --&gt;
+            &lt;/template&gt;
+
+            &lt;style scoped&gt;
+              /* ... */
+            &lt;/style&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
           <h2>Component Tree</h2>
 
           <img data-src="img/component-tree.png" alt="Component tree">
