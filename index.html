@@ -243,6 +243,93 @@
 
       <section>
         <section>
+          <h2>Vue as a Framework</h2>
+        </section>
+
+        <section>
+          <h3>Install Vue CLI</h3>
+
+          <pre class="fragment"><code class="lang-shell" data-trim>
+            $ npm install -g @vue/cli
+          </code></pre>
+
+          <div class="fragment">
+            <h6>Or</h6>
+
+            <pre><code class="lang-shell" data-trim>
+              $ yarn global add @vue/cli
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h3>Create a project</h3>
+
+          <pre class="fragment"><code class="lang-shell" data-trim>
+            $ vue create my-project
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Wiring</h2>
+        </section>
+
+        <section>
+          <h6><code>/public/index.html</code></h6>
+
+          <pre><code class="lang-html" data-trim data-line-numbers="6-8|1-9">
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang=&quot;en&quot;&gt;
+            &lt;head&gt;
+              &lt;!-- ... --&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+              &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h6><code>/src/main.js</code></h6>
+
+          <pre><code class="lang-javascript" data-trim data-line-numbers="1|2|4,6|5|1-6">
+            import Vue from "vue";
+            import App from "./App.vue";
+
+            new Vue({
+              render: h => h(App)
+            }).$mount("#app");
+          </code></pre>
+        </section>
+
+        <section>
+          <h6><code>/src/App.vue</code></h6>
+
+          <pre><code class="lang-vue" data-trim data-line-numbers="1,5|2,4|3|7,11|8,10|9|13,15|14|1-15">
+            &lt;template&gt;
+              &lt;div id=&quot;app&quot;&gt;
+                &lt;!-- ... --&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'App'
+              }
+            &lt;/script&gt;
+
+            &lt;style&gt;
+              /* ... */
+            &lt;/style&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
           <h2>Component Tree</h2>
 
           <img data-src="img/component-tree.png" alt="Component tree">
