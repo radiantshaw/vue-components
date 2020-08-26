@@ -342,9 +342,9 @@
         </section>
 
         <section>
-          <h3>Example</h3>
+          <h3>Accepting data from the parent</h3>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7|2|6-9|1-10">
             &lt;template&gt;
               &lt;h3&gt;{{ title }}&lt;/h3&gt;
             &lt;/template&gt;
@@ -359,9 +359,9 @@
         </section>
 
         <section>
-          <h3>Usage</h3>
+          <h3>Passing data from the parent</h3>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1|2|1-2">
             &lt;blog-post title=&quot;Awesome blog&quot;&gt;&lt;/blog-post&gt;
             &lt;blog-post title=&quot;Yet another awesome blog&quot;&gt;&lt;/blog-post&gt;
           </code></pre>
@@ -378,7 +378,7 @@
         <section>
           <h3>Prop Casing</h3>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7|2|8|1-10">
             &lt;template&gt;
               &lt;h3&gt;{{ postTitle }}&lt;/h3&gt;
             &lt;/template&gt;
@@ -399,7 +399,7 @@
         <section>
           <h3>Prop Types</h3>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="3|1-5">
             &lt;script&gt;
               export default {
                 props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
@@ -407,7 +407,7 @@
             &lt;/script&gt;
           </code></pre>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="3,11|4|5|6|7|8|9|10|1-13">
             &lt;script&gt;
               export default {
                 props: {
@@ -427,7 +427,7 @@
         <section>
           <h3>Prop Validation</h3>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="3,31|4|5|6,9|7|8|6-9|10,13|11|12|10-13|14,19|15|16,18|17|14-19|20,25|21|22,24|23|20-25|26,30|27,29|28|26-30|1-33">
             &lt;script&gt;
               export default {
                 props: {
@@ -444,13 +444,13 @@
                   propE: {
                     type: Object,
                     default: function() {
-                      returns { message: 'hello' };
+                      return { message: 'hello' };
                     }
                   },
                   propF: {
                     type: Array,
                     default: function() {
-                      returns [3.41, 1729];
+                      return [3.41, 1729];
                     }
                   },
                   propG: {
@@ -473,7 +473,7 @@
         <section>
           <h3>Static Props</h3>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2|1-3">
             &lt;template&gt;
               &lt;blog-post title=&quot;My journey with Vue&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
@@ -483,7 +483,7 @@
         <section>
           <h3>Dynamic Props</h3>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7|2|8,14|9,13|10,12|11|1-16">
             &lt;template&gt;
               &lt;blog-post :title=&quot;post.title&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
@@ -504,15 +504,19 @@
         </section>
 
         <section>
-          <h4>Passing a Number</h4>
+          <h3>Passing values other than <code>String</code></h3>
+        </section>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+        <section>
+          <h4>Passing a <code>Number</code></h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :likes=&quot;42&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
           </code></pre>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :likes=&quot;post.likes&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
@@ -520,21 +524,21 @@
         </section>
 
         <section>
-          <h4>Passing a Boolean</h4>
+          <h4>Passing a <code>Boolean</code></h4>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post is-published&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
           </code></pre>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :is-published=&quot;false&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
           </code></pre>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :is-published=&quot;post.isPublished&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
@@ -542,15 +546,15 @@
         </section>
 
         <section>
-          <h4>Passing an Array</h4>
+          <h4>Passing an <code>Array</code></h4>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :comment-ids=&quot;[234, 266, 273]&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
           </code></pre>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :comment-ids=&quot;post.commentIds&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
@@ -558,15 +562,15 @@
         </section>
 
         <section>
-          <h4>Passing an Object</h4>
+          <h4>Passing an <code>Object</code></h4>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :author=&quot;{ name: 'Veronica', company: 'Veridian Dynamics' }&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
           </code></pre>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :author=&quot;post.author&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
@@ -574,9 +578,9 @@
         </section>
 
         <section>
-          <h4>Passing Properties of an Object</h4>
+          <h4>Passing Properties of an <code>Object</code></h4>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7|8,15|9,14|10,13|11,12|2|2,10-13">
             &lt;template&gt;
               &lt;blog-post v-bind=&quot;post&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
@@ -596,7 +600,7 @@
             &lt;/script&gt;
           </code></pre>
 
-          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2">
             &lt;template&gt;
               &lt;blog-post :id=&quot;post.id&quot; :title=&quot;post.title&quot;&gt;&lt;/blog-post&gt;
             &lt;/template&gt;
