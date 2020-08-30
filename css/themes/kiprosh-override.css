@@ -1,0 +1,16 @@
+.reveal {
+  color: #5e696c;
+}
+
+/**
+ * Headers
+ */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: #e53245;
+  text-transform: unset;
+}
