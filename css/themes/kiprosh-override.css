@@ -1,3 +1,5 @@
+@import url(../../fonts/fira-code/fira-code.css)
+
 /**
  * Global styles
  */
@@ -16,6 +18,13 @@
 .reveal h6 {
   color: #e53245;
   text-transform: unset;
+}
+
+/**
+ * Other
+ */
+.reveal pre code {
+  font-family: 'Fira Code', monospace;
 }
 
 /**
