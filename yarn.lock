@@ -2,7 +2,17 @@
 # yarn lockfile v1
 
 
+highlightjs-vue@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/highlightjs-vue/-/highlightjs-vue-1.0.0.tgz#fdfe97fbea6354e70ee44e3a955875e114db086d"
+  integrity sha512-PDEfEF102G23vHmPhLyPboFCD+BkMGu+GuJe2d9/eH4FsCwvgBpnc9n0pGE+ffKdph38s6foEZiEjdgHdzp+IA==
+
 reveal.js@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/reveal.js/-/reveal.js-4.0.2.tgz#2e5e9f8ed0fa239924b448f21d4238c5aa6e852e"
   integrity sha512-LWZSUenufF1gpD7npxJ7KfoQQFKgc1D6XrLTFgKlwWNP1BQ74hT48KONFWMAw+8R/QUeaScCLCLrBVHDfFIEiw==
+
+vue@^2.6.11:
+  version "2.6.11"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
+  integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
