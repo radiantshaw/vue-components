@@ -19,6 +19,13 @@
 }
 
 /**
+ * Frame helper
+ */
+.reveal .r-frame {
+  border-color: #5e696c;
+}
+
+/**
  * Navigation controls
  */
 .reveal .controls {
