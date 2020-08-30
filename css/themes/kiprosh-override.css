@@ -1,3 +1,6 @@
+/**
+ * Global styles
+ */
 .reveal {
   color: #5e696c;
 }
@@ -13,4 +16,19 @@
 .reveal h6 {
   color: #e53245;
   text-transform: unset;
+}
+
+/**
+ * Navigation controls
+ */
+.reveal .controls {
+  color: #e53245;
+}
+
+/**
+ * Progress bar
+ */
+.reveal .progress {
+  height: 8px;
+  color: #e53245;
 }
