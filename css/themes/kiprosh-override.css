@@ -48,3 +48,13 @@
   height: 8px;
   color: #e53245;
 }
+
+/**
+ * Watermark
+ */
+.reveal {
+  background-image: url(../../img/watermark.jpg);
+  background-size: 23%;
+  background-repeat: no-repeat;
+  background-position: -4% 96%;
+}
