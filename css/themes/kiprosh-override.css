@@ -52,7 +52,7 @@
 /**
  * Watermark
  */
-.reveal {
+.slide-watermark {
   background-image: url(../../img/watermark.jpg);
   background-size: 23%;
   background-repeat: no-repeat;
