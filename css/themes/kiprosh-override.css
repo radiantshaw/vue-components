@@ -58,3 +58,24 @@
   background-repeat: no-repeat;
   background-position: -4% 96%;
 }
+
+/**
+ * Initial slide
+ */
+.initial-slide {
+  background-image: url(../../img/kiprosh-logo.png), url(../../img/intro-square.svg);
+  background-size: 175px, 40%;
+  background-repeat: no-repeat;
+  background-position: center 30%, center;
+}
+
+/**
+ * Intro topic
+ */
+.reveal .intro-topic {
+  width: 450px;
+  margin: auto;
+  margin-top: 3.8em;
+  color: white;
+  font-size: 1.1em;
+}
