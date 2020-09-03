@@ -1,0 +1,81 @@
+@import url(../../fonts/fira-code/fira-code.css);
+
+/**
+ * Global styles
+ */
+.reveal {
+  color: #5e696c;
+}
+
+/**
+ * Headers
+ */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: #e53245;
+  text-transform: unset;
+}
+
+/**
+ * Other
+ */
+.reveal pre code {
+  font-family: 'Fira Code', monospace;
+}
+
+/**
+ * Frame helper
+ */
+.reveal .r-frame {
+  border-color: #5e696c;
+}
+
+/**
+ * Navigation controls
+ */
+.reveal .controls {
+  color: #e53245;
+}
+
+/**
+ * Progress bar
+ */
+.reveal .progress {
+  height: 8px;
+  color: #e53245;
+}
+
+/**
+ * Watermark
+ */
+.slide-watermark {
+  background-image: url(../../img/watermark.jpg);
+  background-size: 23%;
+  background-repeat: no-repeat;
+  background-position: -4% 96%;
+}
+
+/**
+ * Initial slide
+ */
+.initial-slide {
+  background-image: url(../../img/kiprosh-logo.png), url(../../img/intro-square.svg);
+  background-size: 175px, 40%;
+  background-repeat: no-repeat;
+  background-position: center 30%, center;
+}
+
+/**
+ * Intro topic
+ */
+.reveal .intro-topic {
+  width: 450px;
+  margin: auto;
+  margin-top: 3.8em;
+  color: white;
+  font-size: 1.1em;
+}
