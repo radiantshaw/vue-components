@@ -21,6 +21,17 @@
 }
 
 /**
+ * Links
+ */
+.reveal a, .reveal a:hover {
+  color: #af4345;
+}
+
+.reveal a:hover {
+  text-decoration: underline;
+}
+
+/**
  * Other
  */
 .reveal pre code {
