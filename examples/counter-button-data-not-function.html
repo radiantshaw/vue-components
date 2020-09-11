@@ -14,22 +14,8 @@
   </div>
 
   <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <script src="../js/components/counter-button.shared-data.js"></script>
   <script>
-    var data = {
-      count: 0
-    };
-
-    Vue.component('counter-button', {
-      data: function() {
-        return data
-      },
-      template: '\
-        <button v-on:click="count++">\
-          You clicked me {{ count }} times.\
-        </button>\
-      '
-    });
-
     new Vue({ el: '#app' });
   </script>
 </body>
