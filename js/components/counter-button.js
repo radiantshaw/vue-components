@@ -6,7 +6,7 @@ Vue.component('counter-button', {
   },
   template: '\
     <button v-on:click="count++">\
-      You clicked me {{ count }} times.\
+      You clicked me {{ count }} times\
     </button>\
   '
 });

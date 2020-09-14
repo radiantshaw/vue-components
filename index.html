@@ -51,7 +51,7 @@
           <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,5|2-4|1-5">
             &lt;div id=&quot;app&quot;&gt;
               &lt;button @click=&quot;count++&quot;&gt;
-                You clicked me {{ count }} times.
+                You clicked me {{ count }} times
               &lt;/button&gt;
             &lt;/div&gt;
           </code></pre>
@@ -80,7 +80,7 @@
               },
               template: `
                 &lt;button @click="count++"&gt;
-                  You clicked me {{ count }} times.
+                  You clicked me {{ count }} times
                 &lt;/button&gt;
               `
             });
@@ -164,7 +164,7 @@
           <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1,5|2-4|7,16|8,15|10-14|9|1-16">
             &lt;template&gt;
               &lt;button @click=&quot;count++&quot;&gt;
-                You clicked me {{ count }} times.
+                You clicked me {{ count }} times
               &lt;/button&gt;
             &lt;/template&gt;
 
@@ -595,6 +595,12 @@
         </section>
 
         <section data-state="slide-watermark">
+          <h3>Let's say...</h3>
+
+          <iframe class="fragment r-frame h-stretch" data-src="examples/increase-spacing-showcase.html"></iframe>
+        </section>
+
+        <section data-state="slide-watermark">
           <h3>Notifying the parent</h3>
 
           <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7,8,10,11|9|1,5|2-4|2,4|1-11">
@@ -619,7 +625,7 @@
             &lt;template&gt;
               &lt;div&gt;
                 &lt;p :style=&quot;{ letterSpacing: letterSpacing + 'em' }&quot;&gt;
-                  Increase the spacing for this para.
+                  Increase the spacing for this para
                 &lt;/p&gt;
 
                 &lt;spacer-button @increase-spacing=&quot;letterSpacing += 0.1&quot;&gt;&lt;/spacer-button&gt;
