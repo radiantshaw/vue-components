@@ -127,6 +127,21 @@
 
           <iframe class="fragment r-frame h-stretch" data-src="examples/counter-button-data-not-function.html"></iframe>
         </section>
+
+        <section data-state="slide-watermark">
+          <h3>Template should have a root</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="1-8|3-7">
+            Vue.component('...', {
+              /* ... */
+              template: `
+                &lt;div&gt;
+                  &lt;!-- ... --&gt;
+                &lt;/div&gt;
+              `
+            });
+          </code></pre>
+        </section>
       </section>
 
       <section>
