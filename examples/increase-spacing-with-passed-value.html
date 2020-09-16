@@ -9,7 +9,7 @@
 <body>
   <div id="app">
     <p :style="{ letterSpacing: letterSpacing + 'em' }">
-      {{ content }}
+      Increase the spacing for this para
     </p>
 
     <spacer-button @increase-spacing="letterSpacing += $event"></spacer-button>
@@ -21,7 +21,6 @@
     new Vue({
       el: '#app',
       data: {
-        content: 'Increase the spacing for this para.',
         letterSpacing: 0
       }
     });
