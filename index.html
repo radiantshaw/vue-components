@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Vue Components</title>
+
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/white.css">
+  <link rel="stylesheet" href="css/themes/kiprosh-override.css">
+
+  <link rel="stylesheet" href="node_modules/reveal.js/plugin/highlight/monokai.css">
+
+  <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-state="initial-slide">
+        <h1 class="intro-topic">Vue.js Component System</h1>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>What is a component?</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>com &middot; po &middot; nent</h3>
+          <p>/kəmˈpəʊnənt/</p>
+          <p>reusable Vue instance with a name</p>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Basics</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Let's build something!</h3>
+
+          <iframe class="fragment r-frame h-stretch" data-src="examples/counter-button-showcase.html"></iframe>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>The normal way...</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,5|2-4|1-5">
+            &lt;div id=&quot;app&quot;&gt;
+              &lt;button @click=&quot;count++&quot;&gt;
+                You clicked me {{ count }} times
+              &lt;/button&gt;
+            &lt;/div&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="1,6|2|3-5|1-6">
+            new Vue({
+              el: '#app',
+              data: {
+                count: 0
+              }
+            });
+          </code></pre>
+
+          <iframe class="fragment r-frame h-stretch" data-src="examples/counter-button-without-components.html"></iframe>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>The component way...</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="1,12|7-11|2-6|1-12">
+            Vue.component('counter-button', {
+              data: function() {
+                return {
+                  count: 0
+                };
+              },
+              template: `
+                &lt;button @click="count++"&gt;
+                  You clicked me {{ count }} times
+                &lt;/button&gt;
+              `
+            });
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,3|2|1-3">
+            &lt;div id=&quot;app&quot;&gt;
+              &lt;counter-button&gt;&lt;/counter-button&gt;
+            &lt;/div&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers>
+            new Vue({ el: '#app' });
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <iframe class="r-frame h-stretch" data-src="examples/counter-button-with-components.html"></iframe>
+
+          <h3 class="fragment">What's all the fuss about?</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,5|2-4|1-5">
+            &lt;div id=&quot;app&quot;&gt;
+              &lt;counter-button&gt;&lt;/counter-button&gt;
+              &lt;counter-button&gt;&lt;/counter-button&gt;
+              &lt;counter-button&gt;&lt;/counter-button&gt;
+            &lt;/div&gt;
+          </code></pre>
+
+          <iframe class="fragment r-frame h-stretch" data-src="examples/counter-button-multiple-with-components.html"></iframe>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3><code>data</code> needs to be a function</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="1-6|2-4">
+            Vue.component('counter-button', {
+              data: {
+                count: 0
+              },
+              /* ... */
+            });
+          </code></pre>
+
+          <iframe class="fragment r-frame h-stretch" data-src="examples/counter-button-data-not-function.html"></iframe>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Template should have a root</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="1-8|3-7">
+            Vue.component('...', {
+              /* ... */
+              template: `
+                &lt;div&gt;
+                  &lt;!-- ... --&gt;
+                &lt;/div&gt;
+              `
+            });
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Single File Components</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Anatomy of a Single File Component</h3>
+
+          <pre class="fragment"><code class="lang-shell" data-trim>
+            $ touch component.vue
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1-3|5-7|9-13|1-13">
+            &lt;template&gt;
+              &lt;!-- ... --&gt;
+            &lt;/template&gt;
+
+            &lt;style&gt;
+              /* ... */
+            &lt;/style&gt;
+
+            &lt;script&gt;
+              export default {
+                // ...
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>The Single File Component way...</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1,5|2-4|7,16|8,15|10-14|9|1-16">
+            &lt;template&gt;
+              &lt;button @click=&quot;count++&quot;&gt;
+                You clicked me {{ count }} times
+              &lt;/button&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'counter-button',
+                data() {
+                  return {
+                    count: 0
+                  };
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Perks of Single File Components</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3><code>template</code> preprocessing</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;template lang=&quot;jade&quot;&gt;&lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;template lang=&quot;haml&quot;&gt;&lt;/template&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;template lang=&quot;pug&quot;&gt;&lt;/template&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3><code>style</code> preprocessing</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;style lang=&quot;scss&quot;&gt;&lt;/style&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;style lang=&quot;less&quot;&gt;&lt;/style&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;style lang=&quot;stylus&quot;&gt;&lt;/style&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3><code>script</code> preprocessing</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;script lang=&quot;coffee&quot;&gt;&lt;/script&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim>
+            &lt;script lang=&quot;ts&quot;&gt;&lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Scoped <code>style</code></h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="5-7|1-3|1-7">
+            &lt;template&gt;
+              &lt;!-- ... --&gt;
+            &lt;/template&gt;
+
+            &lt;style scoped&gt;
+              /* ... */
+            &lt;/style&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Vue as a Framework</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Install Vue CLI</h3>
+
+          <pre class="fragment"><code class="lang-shell" data-trim>
+            $ npm install -g @vue/cli
+          </code></pre>
+
+          <div class="fragment">
+            <h6>Or</h6>
+
+            <pre><code class="lang-shell" data-trim>
+              $ yarn global add @vue/cli
+            </code></pre>
+          </div>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Create a project</h3>
+
+          <pre class="fragment"><code class="lang-shell" data-trim>
+            $ vue create my-project
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Wiring</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h6><code>/public/index.html</code></h6>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1-6,8,9|7|1-9">
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang=&quot;en&quot;&gt;
+            &lt;head&gt;
+              &lt;!-- ... --&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+              &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h6><code>/src/main.js</code></h6>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="1|2|4-6|1-6">
+            import Vue from "vue";
+            import App from "./App.vue";
+
+            new Vue({
+              render: h => h(App)
+            }).$mount("#app");
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h6><code>/src/App.vue</code></h6>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1,5|2-4|7,11|8-10|13-15|1-15">
+            &lt;template&gt;
+              &lt;div id=&quot;app&quot;&gt;
+                &lt;!-- ... --&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'App'
+              }
+            &lt;/script&gt;
+
+            &lt;style&gt;
+              /* ... */
+            &lt;/style&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Component Tree</h2>
+
+          <img data-src="img/component-tree.png" alt="Component tree">
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Props</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Accepting data from the parent</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1,3|2|5,6,9,10|7|8|8,2|1-10">
+            &lt;template&gt;
+              &lt;h3&gt;{{ title }}&lt;/h3&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-post',
+                props: ['title']
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Passing data from the parent</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="1|2|1-2">
+            &lt;blog-post title=&quot;Awesome blog&quot;&gt;&lt;/blog-post&gt;
+            &lt;blog-post title=&quot;Yet another awesome blog&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+
+          <iframe class="fragment r-frame h-stretch" data-src="examples/blog-post.html"></iframe>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Prop Features</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Prop Casing</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="2,8|1-10">
+            &lt;template&gt;
+              &lt;h3&gt;{{ postTitle }}&lt;/h3&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'blog-post',
+                props: ['postTitle']
+              }
+            &lt;/script&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post post-title=&quot;Another blog&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Prop Types</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="3">
+            {
+              /* ... */
+              props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
+              /* ... */
+            }
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="3,11|4|5|6|7|8|9|10|3-11">
+            {
+              /* ... */
+              props: {
+                title: String,
+                likes: Number,
+                isPublished: Boolean,
+                commentIds: Array,
+                author: Object,
+                callback: Function,
+                custom: Custom
+              }
+              /* ... */
+            }
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Prop Validation</h3>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="3,31|4|5|6-9|10-13|14-19|20-25|26-30|3-31">
+              {
+                /* ... */
+                props: {
+                  propA: Number,
+                  propB: [String, Number],
+                  propC: {
+                    type: String,
+                    required: true
+                  },
+                  propD: {
+                    type: Number,
+                    default: 42
+                  },
+                  propE: {
+                    type: Object,
+                    default() {
+                      return { message: 'hello' };
+                    }
+                  },
+                  propF: {
+                    type: Array,
+                    default() {
+                      return [3.41, 1729];
+                    }
+                  },
+                  propG: {
+                    validator(value) {
+                      return ['success', 'warning', 'danger'].indexOf(value) !== -1;
+                    }
+                  }
+                }
+                /* ... */
+              }
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Static vs Dynamic Props</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Static Props</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post title=&quot;My journey with Vue&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Dynamic Props</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :title=&quot;post.title&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="3-9">
+              {
+                /* ... */
+                data() {
+                  return {
+                    post: {
+                      title: 'Simplicity of Vue'
+                    }
+                  };
+                }
+                /* ... */
+              }
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Passing values other than <code>String</code></h3>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h4>Passing a <code>Number</code></h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :likes=&quot;42&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :likes=&quot;post.likes&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h4>Passing a <code>Boolean</code></h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post is-published&gt;&lt;/blog-post&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :is-published=&quot;false&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :is-published=&quot;post.isPublished&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h4>Passing an <code>Array</code></h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :comment-ids=&quot;[234, 266, 273]&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :comment-ids=&quot;post.commentIds&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h4>Passing an <code>Object</code></h4>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :author=&quot;{ name: 'Veronica', company: 'Veridian Dynamics' }&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post :author=&quot;post.author&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h4>Passing Properties of an <code>Object</code></h4>
+
+          <pre class="fragment"><code class="lang-javascript" data-trim data-line-numbers="3-10">
+            {
+              /* ... */
+              data() {
+                return {
+                  post: {
+                    id: 1,
+                    title: 'My Journey with Vue'
+                  }
+                };
+              }
+              /* ... */
+            }
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+            &lt;blog-post v-bind=&quot;post&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers>
+              &lt;blog-post :id=&quot;post.id&quot; :title=&quot;post.title&quot;&gt;&lt;/blog-post&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Events</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Let's say...</h3>
+
+          <iframe class="fragment r-frame h-stretch" data-src="examples/increase-spacing-showcase.html"></iframe>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Notifying the parent</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7,8,10,11|9|1,5|2-4|2,4|1-11">
+            &lt;template&gt;
+              &lt;button @click=&quot;$emit('increase-spacing')&quot;&gt;
+                Increase spacing
+              &lt;/button&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'spacer-button'
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Listening to the child</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="11,12,19,20|13|14-18|1,2,8,9|3-5|3,5|7|1-20">
+            &lt;template&gt;
+              &lt;div&gt;
+                &lt;p :style=&quot;{ letterSpacing: letterSpacing + 'em' }&quot;&gt;
+                  Increase the spacing for this para
+                &lt;/p&gt;
+
+                &lt;spacer-button @increase-spacing=&quot;letterSpacing += 0.1&quot;&gt;&lt;/spacer-button&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'design-container',
+                data() {
+                  return {
+                    letterSpacing: 0
+                  };
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <iframe class="r-frame h-stretch" data-src="examples/increase-spacing.html"></iframe>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Events with Custom Values</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Notifying the parent with data</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7-11|1,5|2-4|2,4|1-11">
+            &lt;template&gt;
+              &lt;button @click=&quot;$emit('increase-spacing', 0.5)&quot;&gt;
+                Increase spacing
+              &lt;/button&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'spacer-button'
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Receiving data from the child</h3>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="11-20|1-5,8,9|7|1-20">
+            &lt;template&gt;
+              &lt;div&gt;
+                &lt;p :style=&quot;{ letterSpacing: letterSpacing + 'em' }&quot;&gt;
+                  Increase the spacing for this para.
+                &lt;/p&gt;
+
+                &lt;spacer-button @increase-spacing=&quot;letterSpacing += $event&quot;&gt;&lt;/spacer-button&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'design-container',
+                data() {
+                  return {
+                    letterSpacing: 0
+                  };
+                }
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <iframe class="r-frame h-stretch" data-src="examples/increase-spacing-with-passed-value.html"></iframe>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Slots</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Non-empty components</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,3|2|1-3">
+            &lt;navigation-link url=&quot;/profile&quot;&gt;
+              Your Profile
+            &lt;/navigation-link&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7,8,11,12|9|10|1,5|2,4|3|1-12">
+            &lt;template&gt;
+              &lt;a :href=&quot;url&quot;&gt;
+                &lt;slot&gt;&lt;/slot&gt;
+              &lt;/a&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'navigation-link',
+                props: ['url']
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Slot Features</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Any template code is allowed</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,4|2,3|1-4">
+            &lt;navigation-link url=&quot;/profile&quot;&gt;
+              &lt;span class=&quot;fa fa-user&quot;&gt;&lt;/span&gt;
+              Your Profile
+            &lt;/navigation-link&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers="1,4|2|3|1-4">
+            &lt;navigation-link url=&quot;/profile&quot;&gt;
+              &lt;font-awesome-icon name=&quot;user&quot;&gt;&lt;/font-awesome-icon&gt;
+              Your Profile
+            &lt;/navigation-link&gt;
+          </code></pre>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Fallback content</h3>
+
+          <pre class="fragment"><code class="lang-html" data-trim data-line-numbers>
+            &lt;navigation-link url=&quot;/profile&quot;&gt;&lt;/navigation-link&gt;
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-vue" data-trim data-line-numbers="7-12|1,2,4,5|3|1-12">
+            &lt;template&gt;
+              &lt;a :href=&quot;url&quot;&gt;
+                &lt;slot&gt;Visit URL&lt;/slot&gt;
+              &lt;/a&gt;
+            &lt;/template&gt;
+
+            &lt;script&gt;
+              export default {
+                name: 'navigation-link',
+                props: ['url']
+              }
+            &lt;/script&gt;
+          </code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Some more goodies...</h2>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Routing with <code>vue-router</code></h3>
+
+          <a href="https://vuejs.org/v2/guide/routing.html" target="_blank">
+            vuejs.org/v2/guide/routing.html
+          </a>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>State Management with <code>vuex</code></h3>
+
+          <a href="https://vuejs.org/v2/guide/state-management.html" target="_blank">
+            vuejs.org/v2/guide/state-management.html
+          </a>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Dynamic and Async Components</h3>
+
+          <a href="https://vuejs.org/v2/guide/components-dynamic-async.html" target="_blank">
+            vuejs.org/v2/guide/components-dynamic-async.html
+          </a>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>Server-Side Rendering with <br><code>vue-server-renderer</code></h3>
+
+          <a href="https://ssr.vuejs.org" target="_blank">
+            ssr.vuejs.org
+          </a>
+        </section>
+
+        <section data-state="slide-watermark">
+          <h3>And the list goes on...</h3>
+        </section>
+      </section>
+
+      <section>
+        <section data-state="slide-watermark">
+          <h2>Vue Todo App</h2>
+
+          <iframe width="854" height="480" src="https://www.youtube.com/embed/videoseries?list=PLEhEHUEU3x5q-xB1On4CsLPts0-rZ9oos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-fragment-index="0"></iframe>
+        </section>
+
+        <section data-state="slide-watermark">
+          <img src="img/vue-todo-playlist.svg" alt="Vue Todo playlist QR code">
+          <br>
+          <a href="https://kutt.it/bKNY44" target="_blank">
+            kutt.it/bKNY44
+          </a>
+        </section>
+      </section>
+
+      <section>
+        <h2>Any questions?</h2>
+      </section>
+
+      <section>
+        <h2>Thank you!</h2>
+      </section>
+    </div>
+  </div>
+  <script src="node_modules/reveal.js/dist/reveal.js"></script>
+  <script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      preloadIframes: true,
+      plugins: [RevealHighlight],
+      dependencies: [
+        {
+          src: 'node_modules/highlightjs-vue/dist/highlightjs-vue.cjs.js',
+          callback: function() {
+            var hljs = Reveal.getPlugin('highlight').hljs;
+            hljs.registerLanguage('vue', window.hljsDefineVue);
+          }
+        }
+      ]
+    });
+  </script>
+</body>
+</html>

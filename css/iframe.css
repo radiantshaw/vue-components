@@ -1,0 +1,6 @@
+@import url(../node_modules/milligram/dist/milligram.min.css);
+
+body {
+  background: white;
+  margin: 1em 1.8em;
+}

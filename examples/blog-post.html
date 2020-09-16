@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Post</title>
+
+  <link rel="stylesheet" href="../css/iframe.css">
+</head>
+<body>
+  <div id="app">
+    <blog-post title="Awesome blog"></blog-post>
+    <blog-post title="Yet another awesome blog"></blog-post>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <script src="../js/components/blog-post.js"></script>
+  <script>
+    new Vue({ el: '#app' });
+  </script>
+</body>
+</html>

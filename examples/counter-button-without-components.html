@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Counter Button Without Components</title>
+
+  <link rel="stylesheet" href="../css/iframe.css">
+</head>
+<body>
+  <div id="app">
+    <button @click="count++">
+      You clicked me {{ count }} times
+    </button>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        count: 0
+      }
+    });
+  </script>
+</body>
+</html>

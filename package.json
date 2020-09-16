@@ -4,5 +4,11 @@
   "description": "Vue components presentation",
   "main": "index.js",
   "author": "Nipun Paradkar <nipun@kiprosh.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "highlightjs-vue": "^1.0.0",
+    "milligram": "^1.4.1",
+    "reveal.js": "^4.0.2",
+    "vue": "^2.6.11"
+  }
 }
